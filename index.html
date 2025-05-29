@@ -3,15 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doxing Form</title>
+    <title>Gestión de Datos</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1 id="one">Select one option</h1>
-    <div class="buttons">
-        <button id="add" class="btn">ADD</button>
-        <button id="list" class="btn">LIST</button>
+    <div id="container">
+        <h1>Gestión de Datos</h1>
+        <button id="add-btn">Agregar</button>
+        <button id="list-btn">Lista</button>
     </div>
-    <script src="script.js" defer></script>
+
+    <div id="form-container" class="hidden">
+        <h2>Agregar Persona</h2>
+        <form id="data-form">
+            <input type="text" id="name" placeholder="Nombre" required>
+            <input type="text" id="rut" placeholder="RUT" required>
+            <input type="date" id="dob" required>
+            <input type="text" id="birthplace" placeholder="Lugar de nacimiento" required>
+            <input type="text" id="address" placeholder="Dirección (coordenadas)" required>
+            <input type="tel" id="phone" placeholder="Número de teléfono" required>
+            <input type="email" id="email" placeholder="Correo" required>
+
+            <h3>Padres</h3>
+            <div id="parent-container"></div>
+            <button type="button" id="add-parent">Añadir Padre</button>
+
+            <h3>Amigos</h3>
+            <div id="friend-container">
+                <div>
+                    <input type="text" placeholder="Nombre">
+                    <input type="text" placeholder="RUT">
+                    <input type="text" placeholder="Descripción">
+                </div>
+            </div>
+            <button type="button" id="add-friend">Añadir Amigo</button>
+
+            <button type="submit">Guardar</button>
+            <button type="button" id="cancel-form">Cancelar</button>
+        </form>
+    </div>
+
+    <div id="list-container" class="hidden">
+        <h2>Lista de Personas</h2>
+        <ul id="data-list"></ul>
+        <button id="back-to-main">Volver</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

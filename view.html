@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de la Persona</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <h1>Detalle de la Persona</h1>
+    <div id="details"></div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const index = params.get('index');
+
+        const dataStorage = JSON.parse(localStorage.getItem('dataStorage') || '[]');
+        const person = dataStorage[index];
+
+        if (person) {
+            const detailsDiv = document.getElementById('details');
+            detailsDiv.innerHTML = `
+                <h2>${person.name}</h2>
+                <p><strong>RUT:</strong> ${person.rut}</p>
+                <p><strong>Fecha de Nacimiento:</strong> ${person.dob}</p>
+                <p><strong>Lugar de Nacimiento:</strong> ${person.birthplace}</p>
+                <p><strong>Dirección:</strong> ${person.address}</p>
+                <p><strong>Teléfono:</strong> ${person.phone}</p>
+                <p><strong>Correo:</strong> ${person.email}</p>
+                <h3>Padres:</h3>
+                <ul>
+                    ${person.parents.map(parent => `<li>${parent.name} - ${parent.rut}</li>`).join('')}
+                </ul>
+                <h3>Amigos:</h3>
+                <ul>
+                    ${person.friends.map(friend => `<li>${friend.rut} - ${friend.description}</li>`).join('')}
+                </ul>
+            `;
+        } else {
+            document.body.innerHTML = '<p>Información no disponible.</p>';
+        }
+    </script>
+</body>
+</html>
